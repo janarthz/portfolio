@@ -1,203 +1,949 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Janarthanan M | Portfolio</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Janarthanan Mani | AI & ML Developer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
+    :root {
+      --dk:    #0d1117;
+      --dk2:   #161b22;
+      --dk3:   #21262d;
+      --dk4:   #30363d;
+      --dk5:   #3d444d;
+      --acc:   #e05c35;
+      --acc2:  #7c6af7;
+      --li:    #0A66C2;
+      --tx:    #e6edf3;
+      --tx2:   #8b949e;
+      --tx3:   #6e7681;
+      --grn:   #3fb950;
+      --blu:   #58a6ff;
+      --ylw:   #d29922;
+      --r:     10px;
+      --rl:    14px;
+    }
 
-  <link rel="stylesheet" href="style.css">
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--dk);
+      color: var(--tx);
+      font-family: 'Syne', sans-serif;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    /* ─── SCROLLBAR ─── */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--dk); }
+    ::-webkit-scrollbar-thumb { background: var(--dk5); border-radius: 3px; }
+
+    /* ─── LAYOUT ─── */
+    .wrap { max-width: 960px; margin: 0 auto; padding: 1.5rem 1.25rem 3rem; }
+
+    /* ─── NAV ─── */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: .875rem 1.5rem;
+      background: var(--dk2);
+      border: 1px solid var(--dk4);
+      border-radius: var(--rl);
+      margin-bottom: 1.25rem;
+      position: sticky;
+      top: 1rem;
+      z-index: 100;
+      backdrop-filter: blur(10px);
+    }
+
+    .nav-logo {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--tx);
+      text-decoration: none;
+    }
+    .nav-logo span { color: var(--acc); }
+
+    .nav-links { display: flex; gap: 1.75rem; list-style: none; }
+    .nav-links a {
+      font-size: 13px;
+      color: var(--tx2);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--tx); }
+
+    .nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 4px; }
+    .nav-toggle span {
+      display: block; width: 20px; height: 2px;
+      background: var(--tx2); margin: 4px 0;
+      border-radius: 2px; transition: .3s;
+    }
+
+    /* ─── HERO ─── */
+    .hero {
+      background: var(--dk2);
+      border: 1px solid var(--dk4);
+      border-radius: var(--rl);
+      padding: 2.75rem 2.25rem;
+      margin-bottom: 1.25rem;
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+      animation: fadeUp .6s ease both;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero-left { flex: 1; }
+
+    .hero-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--acc);
+      margin-bottom: .85rem;
+    }
+
+    .hero h1 {
+      font-size: clamp(28px, 5vw, 38px);
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: .5rem;
+      letter-spacing: -.02em;
+    }
+    .hero h1 span { color: var(--acc); }
+
+    .hero-role {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 14px;
+      color: var(--tx2);
+      margin-bottom: 1.5rem;
+    }
+    .cursor {
+      color: var(--acc);
+      animation: blink 1s step-end infinite;
+    }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+    .hero-btns { display: flex; gap: .75rem; flex-wrap: wrap; margin-bottom: 1.25rem; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 13px;
+      font-weight: 600;
+      font-family: 'Syne', sans-serif;
+      padding: 9px 20px;
+      border-radius: 7px;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      transition: opacity .15s, transform .15s;
+    }
+    .btn:hover { opacity: .88; transform: translateY(-1px); }
+    .btn:active { transform: scale(.98); }
+
+    .btn-cv  { background: var(--acc);  color: #fff; }
+    .btn-li  { background: var(--li);   color: #fff; }
+    .btn-gh  { background: var(--dk3);  color: var(--tx); border: 1px solid var(--dk5); }
+
+    .btn svg { width: 15px; height: 15px; flex-shrink: 0; }
+
+    .hero-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+    .hchip {
+      font-size: 11px;
+      padding: 4px 11px;
+      border-radius: 99px;
+      border: 1px solid var(--dk4);
+      color: var(--tx2);
+      background: var(--dk3);
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .hero-avatar {
+      width: 130px; height: 130px;
+      border-radius: 50%;
+      border: 2px solid var(--acc);
+      overflow: hidden;
+      flex-shrink: 0;
+      background: var(--dk3);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .hero-avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .hero-avatar .initials {
+      font-size: 38px; font-weight: 800;
+      color: var(--acc); letter-spacing: -.02em;
+    }
+
+    /* ─── STATS ─── */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-bottom: 1.25rem;
+      animation: fadeUp .6s .1s ease both;
+    }
+    .stat-card {
+      background: var(--dk2);
+      border: 1px solid var(--dk4);
+      border-radius: var(--r);
+      padding: 1.25rem 1rem;
+      text-align: center;
+    }
+    .stat-num {
+      font-size: 30px;
+      font-weight: 800;
+      color: var(--acc);
+      letter-spacing: -.02em;
+    }
+    .stat-lbl { font-size: 12px; color: var(--tx2); margin-top: 4px; font-weight: 500; }
+
+    /* ─── SECTION ─── */
+    .section {
+      background: var(--dk2);
+      border: 1px solid var(--dk4);
+      border-radius: var(--rl);
+      padding: 1.75rem 2rem;
+      margin-bottom: 1.25rem;
+      animation: fadeUp .6s .15s ease both;
+    }
+
+    .sec-head {
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+      margin-bottom: 1.5rem;
+    }
+    .sec-icon {
+      width: 30px; height: 30px;
+      border-radius: 7px;
+      background: var(--dk3);
+      border: 1px solid var(--dk4);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .sec-title {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      color: var(--tx2);
+    }
+    .sec-line { flex: 1; height: 1px; background: var(--dk4); }
+
+    /* ─── ABOUT ─── */
+    .about-text {
+      font-size: 14.5px;
+      color: var(--tx2);
+      line-height: 1.85;
+    }
+
+    /* ─── SKILLS ─── */
+    .skill-cols {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      gap: 1.5rem;
+    }
+    .sg-title {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      font-weight: 600;
+      color: var(--tx3);
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      margin-bottom: 10px;
+    }
+    .badges { display: flex; flex-wrap: wrap; gap: 6px; }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 5px 11px;
+      border-radius: 6px;
+      border: 1px solid var(--dk4);
+      background: var(--dk3);
+      color: var(--tx);
+      transition: border-color .15s, background .15s;
+    }
+    .badge:hover { border-color: var(--dk5); background: var(--dk4); }
+
+    .badge .ico {
+      width: 16px; height: 16px;
+      border-radius: 3px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 9px;
+      font-weight: 800;
+      flex-shrink: 0;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* skill icon colours */
+    .ic-c    { background:#044F88; color:#fff; }
+    .ic-java { background:#E76F00; color:#fff; }
+    .ic-py   { background:#3572A5; color:#fff; }
+    .ic-sql  { background:#336791; color:#fff; }
+    .ic-html { background:#e34c26; color:#fff; }
+    .ic-css  { background:#264de4; color:#fff; }
+    .ic-php  { background:#777BB4; color:#fff; }
+    .ic-az   { background:#0089D6; color:#fff; }
+    .ic-gcp  { background:#4285F4; color:#fff; }
+    .ic-tf   { background:#ff6f00; color:#fff; }
+    .ic-pt   { background:#ee4c2c; color:#fff; }
+    .ic-sk   { background:#f7931e; color:#000; }
+    .ic-pd   { background:#150458; color:#e9d9f2; }
+    .ic-nb   { background:#f37626; color:#fff; }
+
+    /* badge border accents */
+    .b-c    { border-color: #0d3d6b; }
+    .b-java { border-color: #6b3300; }
+    .b-py   { border-color: #1c4a6b; }
+    .b-sql  { border-color: #1c3d52; }
+    .b-html { border-color: #6b2010; }
+    .b-css  { border-color: #162070; }
+    .b-php  { border-color: #3d3d6b; }
+    .b-az   { border-color: #004d80; }
+    .b-gcp  { border-color: #1a3a80; }
+    .b-tf   { border-color: #7a3500; }
+    .b-pt   { border-color: #7a2010; }
+    .b-sk   { border-color: #7a4800; }
+    .b-pd   { border-color: #4a2e80; }
+    .b-nb   { border-color: #7a3500; }
+
+    /* ─── EDUCATION ─── */
+    .edu-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      padding: .9rem 0;
+      border-bottom: 1px solid var(--dk3);
+    }
+    .edu-item:last-child { border: none; padding-bottom: 0; }
+
+    .edu-dot {
+      width: 9px; height: 9px;
+      border-radius: 50%;
+      background: var(--acc);
+      margin-top: 5px;
+      flex-shrink: 0;
+    }
+    .edu-body { flex: 1; }
+    .edu-name { font-size: 14px; font-weight: 600; margin-bottom: 3px; }
+    .edu-school { font-size: 12px; color: var(--tx2); margin-bottom: 4px; }
+    .edu-link {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: var(--blu);
+      text-decoration: none;
+    }
+    .edu-link:hover { text-decoration: underline; }
+    .edu-pct { font-size: 14px; font-weight: 700; color: var(--grn); white-space: nowrap; }
+
+    /* ─── CERTIFICATIONS ─── */
+    .cert-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(185px, 1fr));
+      gap: 10px;
+    }
+    .cert-card {
+      background: var(--dk3);
+      border: 1px solid var(--dk4);
+      border-left: 3px solid var(--acc2);
+      border-radius: 8px;
+      padding: 12px 15px;
+      text-decoration: none;
+      display: block;
+      transition: border-color .15s, background .15s;
+    }
+    .cert-card:hover { background: var(--dk4); border-left-color: var(--acc); }
+    .cert-issuer {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      color: var(--tx3);
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      margin-bottom: 4px;
+    }
+    .cert-name { font-size: 13px; font-weight: 600; color: var(--tx); }
+
+    /* ─── PROJECTS ─── */
+    .proj-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(265px, 1fr));
+      gap: 1rem;
+    }
+    .proj-card {
+      background: var(--dk3);
+      border: 1px solid var(--dk4);
+      border-radius: var(--r);
+      padding: 1.2rem 1.35rem;
+      display: flex;
+      flex-direction: column;
+      gap: .75rem;
+      transition: border-color .2s, transform .2s;
+    }
+    .proj-card:hover { border-color: var(--dk5); transform: translateY(-2px); }
+
+    .proj-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; }
+    .proj-title { font-size: 14px; font-weight: 700; }
+
+    .ptag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      padding: 3px 9px;
+      border-radius: 99px;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    .t-dl  { background:#1A1C2D; color:#58a6ff; border:1px solid #2a2e4a; }
+    .t-ml  { background:#1C2D1A; color:#3fb950; border:1px solid #2e4a2c; }
+    .t-nlp { background:#2D1A2D; color:#d2a8ff; border:1px solid #4a2e4a; }
+    .t-rnn { background:#2D1E0D; color:#d29922; border:1px solid #4a3510; }
+    .t-cv  { background:#1A2D2D; color:#39d0d0; border:1px solid #2a4a4a; }
+
+    .proj-desc { font-size: 12.5px; color: var(--tx2); line-height: 1.65; flex: 1; }
+
+    .proj-footer { display: flex; align-items: center; justify-content: space-between; }
+    .proj-lang {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: var(--tx3);
+      display: flex; align-items: center; gap: 5px;
+    }
+    .ldot { width: 9px; height: 9px; border-radius: 50%; background: #3572A5; }
+    .ldot.nb { background: #f37626; }
+
+    .proj-btn {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: var(--blu);
+      text-decoration: none;
+      border: 1px solid var(--dk5);
+      padding: 4px 11px;
+      border-radius: 99px;
+      transition: border-color .15s, background .15s;
+    }
+    .proj-btn:hover { background: var(--dk4); border-color: var(--blu); }
+
+    /* ─── CONTACT ─── */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: .875rem;
+    }
+    .contact-card {
+      background: var(--dk3);
+      border: 1px solid var(--dk4);
+      border-radius: var(--r);
+      padding: .9rem 1.1rem;
+      display: flex;
+      align-items: center;
+      gap: .875rem;
+      text-decoration: none;
+      transition: border-color .15s, background .15s;
+    }
+    .contact-card:hover { background: var(--dk4); border-color: var(--dk5); }
+
+    .cc-icon {
+      width: 34px; height: 34px;
+      border-radius: 7px;
+      background: var(--dk4);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .cc-icon svg { width: 17px; height: 17px; }
+    .cc-label { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--tx3); margin-bottom: 2px; }
+    .cc-val { font-size: 12px; font-weight: 600; color: var(--tx); word-break: break-all; }
+
+    /* ─── FOOTER ─── */
+    footer {
+      text-align: center;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: var(--tx3);
+      padding: 1.5rem 0 .5rem;
+    }
+    footer span { color: var(--acc); }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 640px) {
+      nav { top: .5rem; }
+      .nav-links { display: none; flex-direction: column; gap: 1rem; }
+      .nav-links.open { display: flex; }
+      .nav-toggle { display: block; }
+
+      .hero { flex-direction: column-reverse; text-align: center; padding: 2rem 1.5rem; }
+      .hero-btns { justify-content: center; }
+      .hero-chips { justify-content: center; }
+      .hero-avatar { width: 100px; height: 100px; }
+
+      .stats { grid-template-columns: repeat(3, 1fr); gap: .75rem; }
+      .stat-num { font-size: 22px; }
+
+      .section { padding: 1.25rem 1.25rem; }
+    }
+
+    @media (max-width: 420px) {
+      .stats { grid-template-columns: 1fr; }
+      .proj-grid { grid-template-columns: 1fr; }
+      .cert-grid { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
 <body>
 
-<header>
-  <img src="images/jana.jpg" alt="Avatar">
-  <h1>Janarthanan Mani</h1>
-  <p>B.Tech Information Technology Graduate</p>
-  <p>
-  📍 
-  <a href="https://www.google.com/maps/place/Srirangam,+Tiruchirappalli,+Tamil+Nadu"
-     target="_blank"
-     class="map-link">
-     Tiruchirappalli
-  </a>
-  |
-  📧 <a href="mailto:janamcmjs4533@gmail.com">janamcmjs4533@gmail.com</a>
-  <p>
-  📞 
-  <a href="tel:+919361414636" class="call-link">
-    +91 93614 14636
-  </a>
-</p>
+<div class="wrap">
 
-</p>
-
-    <a href="https://github.com/janarthz" target="_blank" class="github-btn">
-  ⭐ GitHub Profile
-</a>
-  </p>
-</header>
-
-<div class="container">
-
-  <div class="card">
-    <h2>About Me</h2>
-    <p>
-      I am a passionate Information Technology graduate with strong interest in
-      software development, web technologies, artificial intelligence, and cloud
-      computing. I enjoy converting ideas into practical applications.
-    </p>
-  </div>
-
-  <div class="card">
-    <h2>Career Objective</h2>
-    <p>
-      To secure a challenging position in the IT industry where I can apply my
-      technical skills, learn continuously, and contribute to innovative and
-      impactful software solutions.
-    </p>
-  </div>
-
- <div class="card">
-  <h2>Technical Skills</h2>
-
-  <div class="skill-group">
-    <h4>Programming Languages</h4>
-    <div class="skills">
-      <span>C</span>
-      <span>Java</span>
-      <span>Python</span>
-      <span>SQL</span>
-    </div>
-  </div>
-
-  <div class="skill-group">
-    <h4>Web Technologies</h4>
-    <div class="skills">
-      <span>HTML</span>
-      <span>CSS</span>
-      <span>PHP</span>
-    </div>
-  </div>
-
-  <div class="skill-group">
-    <h4>Cloud & Platforms</h4>
-    <div class="skills">
-      <span>Microsoft Azure</span>
-      <span>Google Cloud Platform</span>
-    </div>
-  </div>
-
-  <div class="skill-group">
-    <h4>Soft Skills</h4>
-    <div class="skills">
-      <span>Teamwork</span>
-      <span>Leadership</span>
-      <span>Problem Solving</span>
-    </div>
-  </div>
-
-</div>
-
-
-  <div class="card">
-  <h2>Education</h2>
-
-  <h4>UG – B.Tech Information Technology</h4>
-  <p>K. Ramakrishnan College of Engineering</p>
-  <p>Percentage – 80%</p>
-
-  <a href="marksheets/ug-marksheet.pdf"
-     target="_blank"
-     class="marksheet-btn"
-     title="Click to see marksheet">
-     📄 View Marksheet
-  </a>
-
-  <hr>
-
-  <h4>HSC</h4>
-  <p>The Higher Secondary School for Boys, Srirangam</p>
-  <p>Percentage – 77%</p>
-
-  <a href="marksheets/hsc-marksheet.pdf"
-     target="_blank"
-     class="marksheet-btn"
-     title="Click to see marksheet">
-     📄 View Marksheet
-  </a>
-
-  <hr>
-
-  <h4>SSLC</h4>
-  <p>Sree Vaijayanthee Vidhyalaya Matric Hr Sec School</p>
-  <p>Percentage – 67%</p>
-
-  <a href="marksheets/sslc-marksheet.pdf"
-     target="_blank"
-     class="marksheet-btn"
-     title="Click to see marksheet">
-     📄 View Marksheet
-  </a>
-
-</div>
-
-
-  <div class="card">
-  <h2>Projects</h2>
-
-  <a href="https://github.com/janarthz/MACHINE-LEARNING-BASED-SYSTEM-FOR-SKIN-DISEASE-DIAGNOSIS-AND-PREDICTION-"
-     target="_blank"
-     class="project-link">
-
-    <div class="project">
-      <b>Skin Disease Diagnosis & Prediction</b>
-      <p>
-        AI-powered web application using CNN and Inception V3 to detect skin
-        diseases like acne, eczema, psoriasis, and melanoma with high accuracy.
-      </p>
-    </div>
-  </a>
-
-  <a href="https://github.com/janarthz/Paddy-Classifiction"
-     target="_blank"
-     class="project-link">
-
-    <div class="project">
-      <b>Paddy Disease Classification</b>
-      <p>
-        Deep learning based system that identifies paddy leaf diseases from images,
-        helping farmers take timely preventive actions.
-      </p>
-    </div>
-  </a>
-
-</div>
-
-
-  <div class="card">
-    <h2>Certifications (Tap to Watch)</h2>
-    <ul>
-      <li><a href="certificates/AZURE.pdf" target="_blank">Microsoft Azure Fundamentals</a></li>
-      <li><a href="certificates/genai.pdf" target="_blank">IBM – Generative AI</a></li>
-      <li><a href="certificates/CDAC.pdf" target="_blank">IBM – AR VR using Unity</a></li>
-      <li><a href="certificates/agile.pdf" target="_blank">Agile Methodology </a></li>
+  <!-- NAV -->
+  <nav id="navbar">
+    <a class="nav-logo" href="#"><&lt;<span>/</span>&gt; janarthz</a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
     </ul>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <div class="hero-left">
+      <div class="hero-tag">// hello, world</div>
+      <h1>Janarthanan <span>Mani</span></h1>
+      <div class="hero-role">&gt;&nbsp;AI &amp; ML Developer<span class="cursor">_</span></div>
+
+      <div class="hero-btns">
+        <!-- Replace assets/Janarthanan_CV.pdf with your actual CV path -->
+        <a class="btn btn-cv" href="assets/Janarthanan_CV.pdf" download="Janarthanan_Mani_CV.pdf">
+          <svg viewBox="0 0 16 16" fill="none"><path d="M8 2v8M5 7l3 3 3-3M3 13h10" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Download CV
+        </a>
+        <a class="btn btn-li" href="https://www.linkedin.com/in/janarthanan-m-5a9aa0251" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="#fff"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.59 0 4.26 2.36 4.26 5.43v6.31zM5.34 7.43a2.06 2.06 0 110-4.12 2.06 2.06 0 010 4.12zM3.56 20.45h3.55V9H3.56v11.45z"/></svg>
+          LinkedIn
+        </a>
+        <a class="btn btn-gh" href="https://github.com/janarthz" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.42 2.87 8.17 6.84 9.49.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.89 1.52 2.34 1.08 2.91.83.09-.65.35-1.08.63-1.33-2.22-.25-4.56-1.11-4.56-4.95 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02A9.56 9.56 0 0112 6.8c.85 0 1.71.11 2.51.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.85-2.34 4.7-4.57 4.95.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10.01 10.01 0 0022 12c0-5.52-4.48-10-10-10z"/></svg>
+          GitHub
+        </a>
+      </div>
+
+      <div class="hero-chips">
+        <span class="hchip">📍 Tiruchirappalli, TN</span>
+        <span class="hchip">janamcmjs4533@gmail.com</span>
+        <span class="hchip">+91 93614 14636</span>
+      </div>
+    </div>
+
+    <div class="hero-avatar">
+      <!-- If jana.jpg exists in images/ folder it shows; otherwise initials show -->
+      <img src="images/jana.jpg" alt="Janarthanan Mani"
+           onerror="this.style.display='none'; this.parentElement.querySelector('.initials').style.display='flex';" />
+      <span class="initials" style="display:none;">JM</span>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <div class="stats">
+    <div class="stat-card">
+      <div class="stat-num">6+</div>
+      <div class="stat-lbl">Projects built</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">4</div>
+      <div class="stat-lbl">Certifications</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">80%</div>
+      <div class="stat-lbl">B.Tech score</div>
+    </div>
   </div>
 
-  <div class="card">
-    <h2>Strengths & Interests</h2>
-    <ul>
-      <li>Quick learner & problem solver</li>
-      <li>Team player with leadership qualities</li>
-      <li>Interest in AI, ML & Cloud technologies</li>
-    </ul>
-  </div>
+  <!-- ABOUT -->
+  <section class="section" id="about">
+    <div class="sec-head">
+      <div class="sec-icon">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <circle cx="8" cy="8" r="6" stroke="#e05c35" stroke-width="1.5"/>
+          <path d="M8 5v3l2 1.5" stroke="#e05c35" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <span class="sec-title">About me</span>
+      <div class="sec-line"></div>
+    </div>
+    <p class="about-text">
+      Passionate B.Tech Information Technology graduate with hands-on experience building AI and ML applications.
+      Skilled in deep learning, NLP, computer vision, and cloud platforms — I transform real-world problems into
+      intelligent, data-driven solutions. From diagnosing skin diseases with CNNs to detecting credit card fraud
+      with anomaly detection, I enjoy building systems that make a tangible impact. Currently seeking a challenging
+      position in the IT industry where I can apply my technical skills, learn continuously, and contribute to
+      innovative and impactful software solutions.
+    </p>
+  </section>
+
+  <!-- SKILLS -->
+  <section class="section" id="skills">
+    <div class="sec-head">
+      <div class="sec-icon">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <rect x="2" y="2" width="5" height="5" rx="1" stroke="#7c6af7" stroke-width="1.5"/>
+          <rect x="9" y="2" width="5" height="5" rx="1" stroke="#7c6af7" stroke-width="1.5"/>
+          <rect x="2" y="9" width="5" height="5" rx="1" stroke="#7c6af7" stroke-width="1.5"/>
+          <rect x="9" y="9" width="5" height="5" rx="1" stroke="#7c6af7" stroke-width="1.5"/>
+        </svg>
+      </div>
+      <span class="sec-title">Technical skills</span>
+      <div class="sec-line"></div>
+    </div>
+    <div class="skill-cols">
+
+      <div>
+        <div class="sg-title">Languages</div>
+        <div class="badges">
+          <span class="badge b-c">   <span class="ico ic-c">C</span>   C</span>
+          <span class="badge b-java"><span class="ico ic-java">J</span> Java</span>
+          <span class="badge b-py">  <span class="ico ic-py">Py</span>  Python</span>
+          <span class="badge b-sql"> <span class="ico ic-sql">SQL</span> SQL</span>
+        </div>
+      </div>
+
+      <div>
+        <div class="sg-title">Web</div>
+        <div class="badges">
+          <span class="badge b-html"><span class="ico ic-html">HTM</span> HTML5</span>
+          <span class="badge b-css"> <span class="ico ic-css">CSS</span> CSS3</span>
+          <span class="badge b-php"> <span class="ico ic-php">PHP</span> PHP</span>
+        </div>
+      </div>
+
+      <div>
+        <div class="sg-title">Cloud</div>
+        <div class="badges">
+          <span class="badge b-az"> <span class="ico ic-az">AZ</span>  Azure</span>
+          <span class="badge b-gcp"><span class="ico ic-gcp">GCP</span> GCP</span>
+        </div>
+      </div>
+
+      <div>
+        <div class="sg-title">AI / ML</div>
+        <div class="badges">
+          <span class="badge b-tf"><span class="ico ic-tf">TF</span>  TensorFlow</span>
+          <span class="badge b-pt"><span class="ico ic-pt">PT</span>  PyTorch</span>
+          <span class="badge b-sk"><span class="ico ic-sk">SK</span>  Sklearn</span>
+          <span class="badge b-pd"><span class="ico ic-pd">PD</span>  Pandas</span>
+          <span class="badge b-nb"><span class="ico ic-nb">NB</span>  NumPy</span>
+        </div>
+      </div>
+
+      <div>
+        <div class="sg-title">Soft skills</div>
+        <div class="badges">
+          <span class="badge">Teamwork</span>
+          <span class="badge">Leadership</span>
+          <span class="badge">Problem solving</span>
+          <span class="badge">Quick learner</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section class="section" id="education">
+    <div class="sec-head">
+      <div class="sec-icon">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path d="M2 6l6-4 6 4-6 4-6-4z" stroke="#d29922" stroke-width="1.4" stroke-linejoin="round"/>
+          <path d="M4 7.5V11c0 1 1.8 2 4 2s4-1 4-2V7.5" stroke="#d29922" stroke-width="1.4" stroke-linecap="round"/>
+          <path d="M14 6v4" stroke="#d29922" stroke-width="1.4" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <span class="sec-title">Education</span>
+      <div class="sec-line"></div>
+    </div>
+
+    <div class="edu-item">
+      <div class="edu-dot"></div>
+      <div class="edu-body">
+        <div class="edu-name">B.Tech – Information Technology</div>
+        <div class="edu-school">K. Ramakrishnan College of Engineering</div>
+        <a class="edu-link" href="marksheets/ug-marksheet.pdf" target="_blank">View marksheet →</a>
+      </div>
+      <div class="edu-pct">80%</div>
+    </div>
+
+    <div class="edu-item">
+      <div class="edu-dot"></div>
+      <div class="edu-body">
+        <div class="edu-name">HSC (Class XII)</div>
+        <div class="edu-school">The Higher Secondary School for Boys, Srirangam</div>
+        <a class="edu-link" href="marksheets/hsc-marksheet.pdf" target="_blank">View marksheet →</a>
+      </div>
+      <div class="edu-pct">77%</div>
+    </div>
+
+    <div class="edu-item">
+      <div class="edu-dot"></div>
+      <div class="edu-body">
+        <div class="edu-name">SSLC (Class X)</div>
+        <div class="edu-school">Sree Vaijayanthee Vidhyalaya Matric Hr Sec School</div>
+        <a class="edu-link" href="marksheets/sslc-marksheet.pdf" target="_blank">View marksheet →</a>
+      </div>
+      <div class="edu-pct">67%</div>
+    </div>
+  </section>
+
+  <!-- CERTIFICATIONS -->
+  <section class="section" id="certifications">
+    <div class="sec-head">
+      <div class="sec-icon">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <rect x="2" y="4" width="12" height="9" rx="1.5" stroke="#58a6ff" stroke-width="1.4"/>
+          <path d="M5 4V3a1 1 0 011-1h4a1 1 0 011 1v1" stroke="#58a6ff" stroke-width="1.3"/>
+          <path d="M5 9h6M5 11.5h3" stroke="#58a6ff" stroke-width="1.2" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <span class="sec-title">Certifications</span>
+      <div class="sec-line"></div>
+    </div>
+    <div class="cert-grid">
+      <a class="cert-card" href="certificates/AZURE.pdf" target="_blank">
+        <div class="cert-issuer">Microsoft</div>
+        <div class="cert-name">Azure Fundamentals (AZ-900)</div>
+      </a>
+      <a class="cert-card" href="certificates/genai.pdf" target="_blank">
+        <div class="cert-issuer">IBM</div>
+        <div class="cert-name">Generative AI</div>
+      </a>
+      <a class="cert-card" href="certificates/CDAC.pdf" target="_blank">
+        <div class="cert-issuer">IBM</div>
+        <div class="cert-name">AR / VR using Unity</div>
+      </a>
+      <a class="cert-card" href="certificates/agile.pdf" target="_blank">
+        <div class="cert-issuer">Certification</div>
+        <div class="cert-name">Agile Methodology</div>
+      </a>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section class="section" id="projects">
+    <div class="sec-head">
+      <div class="sec-icon">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path d="M2 12L6 4l4 6 2-3 3 5" stroke="#3fb950" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <span class="sec-title">Projects</span>
+      <div class="sec-line"></div>
+    </div>
+    <div class="proj-grid">
+
+      <div class="proj-card">
+        <div class="proj-top">
+          <span class="proj-title">Skin Disease Diagnosis &amp; Prediction</span>
+          <span class="ptag t-cv">Computer Vision</span>
+        </div>
+        <p class="proj-desc">AI-powered web app using CNN and Inception V3 to detect skin diseases — acne, eczema, psoriasis, and melanoma — from uploaded images with high diagnostic accuracy.</p>
+        <div class="proj-footer">
+          <span class="proj-lang"><span class="ldot"></span> Python</span>
+          <a class="proj-btn" href="https://github.com/janarthz/MACHINE-LEARNING-BASED-SYSTEM-FOR-SKIN-DISEASE-DIAGNOSIS-AND-PREDICTION-" target="_blank" rel="noopener">GitHub →</a>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-top">
+          <span class="proj-title">Traffic Volume Prediction</span>
+          <span class="ptag t-rnn">RNN</span>
+        </div>
+        <p class="proj-desc">Deep learning model using Recurrent Neural Networks (RNN) to predict traffic volume from historical time-series CSV data analysis.</p>
+        <div class="proj-footer">
+          <span class="proj-lang"><span class="ldot nb"></span> Jupyter</span>
+          <a class="proj-btn" href="https://github.com/janarthz/Traffic-Prediction" target="_blank" rel="noopener">GitHub →</a>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-top">
+          <span class="proj-title">Weather Condition Prediction</span>
+          <span class="ptag t-dl">Deep Learning</span>
+        </div>
+        <p class="proj-desc">CNN-based system that classifies weather conditions (cloudy, sunny, rainy, etc.) directly from image inputs using a diverse training dataset.</p>
+        <div class="proj-footer">
+          <span class="proj-lang"><span class="ldot nb"></span> Jupyter</span>
+          <a class="proj-btn" href="https://github.com/janarthz/Weather-Predicition" target="_blank" rel="noopener">GitHub →</a>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-top">
+          <span class="proj-title">Sentiment Analysis Tool</span>
+          <span class="ptag t-nlp">NLP</span>
+        </div>
+        <p class="proj-desc">Flask-based web tool using NLTK's VADER to process CSV responses and classify text sentiment as positive or negative with overall distribution summary.</p>
+        <div class="proj-footer">
+          <span class="proj-lang"><span class="ldot"></span> Python</span>
+          <a class="proj-btn" href="https://github.com/janarthz/Sentimental-Analysis" target="_blank" rel="noopener">GitHub →</a>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-top">
+          <span class="proj-title">Credit Card Fraud Detection</span>
+          <span class="ptag t-ml">ML</span>
+        </div>
+        <p class="proj-desc">Detects fraudulent credit card transactions by analyzing patterns and anomalies in transaction data using advanced machine learning techniques.</p>
+        <div class="proj-footer">
+          <span class="proj-lang"><span class="ldot"></span> Python</span>
+          <a class="proj-btn" href="https://github.com/janarthz/Credit-card-prediction" target="_blank" rel="noopener">GitHub →</a>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-top">
+          <span class="proj-title">Paddy Disease Classification</span>
+          <span class="ptag t-cv">Computer Vision</span>
+        </div>
+        <p class="proj-desc">Identifies paddy leaf diseases from field images using deep learning, helping farmers take timely preventive actions to reduce crop loss.</p>
+        <div class="proj-footer">
+          <span class="proj-lang"><span class="ldot nb"></span> Jupyter</span>
+          <a class="proj-btn" href="https://github.com/janarthz/Paddy-Classifiction" target="_blank" rel="noopener">GitHub →</a>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-top">
+          <span class="proj-title">Text Classification – Spam Detection</span>
+          <span class="ptag t-nlp">NLP</span>
+        </div>
+        <p class="proj-desc">Spam detection system using a GRU-based neural network. Preprocesses and tokenizes text data, then classifies messages as spam or not spam.</p>
+        <div class="proj-footer">
+          <span class="proj-lang"><span class="ldot nb"></span> Jupyter</span>
+          <a class="proj-btn" href="https://github.com/janarthz/Text-Classification-" target="_blank" rel="noopener">GitHub →</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="section" id="contact">
+    <div class="sec-head">
+      <div class="sec-icon">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path d="M8 2C5.24 2 3 4.24 3 7c0 3.75 5 9 5 9s5-5.25 5-9c0-2.76-2.24-5-5-5zm0 6.5A1.5 1.5 0 118 5a1.5 1.5 0 010 3.5z" fill="#e05c35"/>
+        </svg>
+      </div>
+      <span class="sec-title">Contact</span>
+      <div class="sec-line"></div>
+    </div>
+    <div class="contact-grid">
+
+      <a class="contact-card" href="mailto:janamcmjs4533@gmail.com">
+        <div class="cc-icon">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M3 8l9 6 9-6" stroke="#58a6ff" stroke-width="1.5"/>
+            <rect x="3" y="6" width="18" height="13" rx="2" stroke="#58a6ff" stroke-width="1.5"/>
+          </svg>
+        </div>
+        <div>
+          <div class="cc-label">Email</div>
+          <div class="cc-val">janamcmjs4533@gmail.com</div>
+        </div>
+      </a>
+
+      <a class="contact-card" href="tel:+919361414636">
+        <div class="cc-icon">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M5 4h4l1.5 4.5-2 1.5a11 11 0 005 5l1.5-2L19 14.5V19a1 1 0 01-1 1A16 16 0 014 5a1 1 0 011-1z" stroke="#3fb950" stroke-width="1.5" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div>
+          <div class="cc-label">Phone</div>
+          <div class="cc-val">+91 93614 14636</div>
+        </div>
+      </a>
+
+      <a class="contact-card" href="https://www.linkedin.com/in/janarthanan-m-5a9aa0251" target="_blank" rel="noopener">
+        <div class="cc-icon">
+          <svg viewBox="0 0 24 24" fill="#0A66C2">
+            <path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.59 0 4.26 2.36 4.26 5.43v6.31zM5.34 7.43a2.06 2.06 0 110-4.12 2.06 2.06 0 010 4.12zM3.56 20.45h3.55V9H3.56v11.45z"/>
+          </svg>
+        </div>
+        <div>
+          <div class="cc-label">LinkedIn</div>
+          <div class="cc-val">janarthanan-m-5a9aa0251</div>
+        </div>
+      </a>
+
+      <a class="contact-card" href="https://github.com/janarthz" target="_blank" rel="noopener">
+        <div class="cc-icon">
+          <svg viewBox="0 0 24 24" fill="#d2a8ff">
+            <path d="M12 2C6.48 2 2 6.48 2 12c0 4.42 2.87 8.17 6.84 9.49.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.89 1.52 2.34 1.08 2.91.83.09-.65.35-1.08.63-1.33-2.22-.25-4.56-1.11-4.56-4.95 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02A9.56 9.56 0 0112 6.8c.85 0 1.71.11 2.51.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.85-2.34 4.7-4.57 4.95.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10.01 10.01 0 0022 12c0-5.52-4.48-10-10-10z"/>
+          </svg>
+        </div>
+        <div>
+          <div class="cc-label">GitHub</div>
+          <div class="cc-val">github.com/janarthz</div>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+  <footer>
+    &lt;<span>/</span>&gt; © 2025 <span>Janarthanan Mani</span> · crafted with passion
+  </footer>
 
 </div>
 
-<footer>
-  © 2025 Janarthanan Mani | Portfolio Website
-</footer>
+<script>
+  const toggle = document.getElementById('navToggle');
+  const links  = document.getElementById('navLinks');
+  toggle.addEventListener('click', () => links.classList.toggle('open'));
 
+  links.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => links.classList.remove('open'));
+  });
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.08 });
+
+  document.querySelectorAll('.section, .stats, .hero').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(24px)';
+    el.style.transition = 'opacity .55s ease, transform .55s ease';
+    observer.observe(el);
+  });
+</script>
 </body>
 </html>
